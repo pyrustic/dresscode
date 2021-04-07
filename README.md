@@ -115,7 +115,7 @@ my_app.start()
 
 <!-- Image -->
 <div align="center">
-    <img src="https://raw.githubusercontent.com/pyrustic/misc/master/media/dresscode-figure-3.png" alt="Figure" width="650">
+    <img src="https://raw.githubusercontent.com/pyrustic/misc/master/media/dresscode-figure-3.gif" alt="Figure" width="650">
     <p align="center">
     <b> Figure 3 - Demo Animation </b>
     </p>

@@ -1,0 +1,2 @@
+recursive-include dresscode *
+global-exclude *.py[cod]

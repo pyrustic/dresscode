@@ -1,0 +1,2 @@
+class DresscodeException(Exception):
+    pass

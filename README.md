@@ -648,10 +648,7 @@ There you go, so I won't be asked to add new components ! :)
 
 ## Epilog
 
-I will stop there for now. I will write the reference later to detail each component. This showcase is intended for early adopters of the Hackernews community. I created a Discord for announcements and discussions etc. Join the [Discord](https://discord.gg/fSZ6nxzVd6) !
+I created a Discord for announcements and discussions etc. Join the [Discord](https://discord.gg/fSZ6nxzVd6) !
 
 
-Your feedback is highly appreciated ! It helps steer the boat in the right direction.
-
-
-Cheers !
+Work in progress...

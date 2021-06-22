@@ -1,21 +1,18 @@
 import tkinter as tk
-from pyrustic.widget.pathentry import Pathentry
+from megawidget.pathentry import Pathentry
 
 
 def builder(page, cid):
-    cache = page.components[cid]
-    master = cache["master"]
-    padding = cache["padding"]
-    config = cache["config"]
-    # container
-    frame = tk.Frame(master)
-    frame.pack(side=config["side"], anchor=config["anchor"],
-               padx=padding[0], pady=padding[1])
+    info = page.components[cid]
+    container = info["container"]
+    padding = info["padding"]
+    config = info["config"]
     # title
-    label = tk.Label(frame, text=config["title"])
+    label = tk.Label(container, text=config["title"])
     label.pack(anchor="w")
     # items container
-    pathentry = Pathentry(frame, width=config["width"])
+    pathentry = Pathentry(container, browse=config["browse"],
+                          width=config["width"])
     pathentry.pack(anchor="w")
     str_var = pathentry.string_var
     on_submit = config["on_submit"]
@@ -28,12 +25,16 @@ def builder(page, cid):
                  on_submit(page, cid))
         pathentry.components["entry"].bind("<Return>", cache)
     parts = {"pathentry": pathentry, "str_var": str_var,
-             "label": label, "frame": frame}
-    return parts, data_getter
+             "label": label}
+    return parts
 
 
-def data_getter(page, cid):
+def reader(page, cid):
     cache = page.components[cid]
     parts = cache["parts"]
     config = cache["config"]
     return parts["str_var"].get()
+
+
+def updater(page, cid, **config):  # TODO
+    pass

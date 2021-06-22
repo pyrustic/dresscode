@@ -27,3 +27,36 @@ COMPONENT_BUILDER = \
         "image": image.builder,
         "table": table.builder
     }
+
+COMPONENT_READER = \
+    {
+        "space": space.reader,
+        "label": label.reader,
+        "entry": entry.reader,
+        "button": button.reader,
+        "editor": editor.reader,
+        "checkbutton": checkbutton.reader,
+        "radiobutton": radiobutton.reader,
+        "spinbox": spinbox.reader,
+        "dropdown_list": dropdown_list.reader,
+        "path_entry": path_entry.reader,
+        "image": image.reader,
+        "table": table.reader
+    }
+
+
+COMPONENT_UPDATER = \
+    {
+        "space": space.updater,
+        "label": label.updater,
+        "entry": entry.updater,
+        "button": button.updater,
+        "editor": editor.updater,
+        "checkbutton": checkbutton.updater,
+        "radiobutton": radiobutton.updater,
+        "spinbox": spinbox.updater,
+        "dropdown_list": dropdown_list.updater,
+        "path_entry": path_entry.updater,
+        "image": image.updater,
+        "table": table.updater
+    }

@@ -31,8 +31,12 @@ def builder(page, cid):
         canvas.bind("<Button-1>", cache)
     parts = {"label": label, "canvas": canvas,
              "photo_image": photo_image, "frame": frame}
-    return parts, data_getter
+    return parts
 
 
-def data_getter(page, cid):
+def reader(page, cid):
     return None
+
+
+def updater(page, cid, **config):  # TODO
+    pass

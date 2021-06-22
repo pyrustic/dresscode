@@ -2,12 +2,12 @@ import tkinter as tk
 
 
 def builder(page, cid):
-    cache = page.components[cid]
-    master = cache["master"]
-    padding = cache["padding"]
-    config = cache["config"]
+    info = page.components[cid]
+    container = info["container"]
+    padding = info["padding"]
+    config = info["config"]
     # container
-    frame = tk.Frame(master)
+    frame = tk.Frame(container)
     frame.pack(side=config["side"], anchor=config["anchor"],
                padx=padding[0], pady=padding[1])
     # title
@@ -31,15 +31,19 @@ def builder(page, cid):
         spinbox.bind("<Return>", command)
     parts = {"frame": frame, "label": label, "spinbox": spinbox,
              "str_var": str_var}
-    return parts, data_getter
+    return parts
 
 
-def data_getter(page, cid):
-    cache = page.components[cid]
-    parts = cache["parts"]
-    config = cache["config"]
+def reader(page, cid):
+    info = page.components[cid]
+    parts = info["parts"]
+    config = info["config"]
     text = parts["str_var"].get()
     index = None
     if text in config["items"]:
         index = config["items"].index(text)
     return index, text
+
+
+def updater(page, cid, **config):  # TODO
+    pass

@@ -224,7 +224,7 @@ def handler(page, cid):
     # you can inspect the dict of components (keys are cid)
     components = page.components  # be curious, inspect the dict !
     # you can retrieve the data from a component
-    username = page.get_data("username")
+    username = page.read_component("username")
     # or you can display a large text
     page.show_text("Helloo\n{}".format(username), title="My large text")
     # or, ask for a confirmation
@@ -335,8 +335,6 @@ app.start()
 
 ```
 
-
-
 ### Editor
 
 <!-- Image -->
@@ -368,7 +366,6 @@ app.add_page(get_home_page())
 app.start()
 
 ```
-
 
 ### Label
 

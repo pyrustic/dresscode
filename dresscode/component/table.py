@@ -1,13 +1,13 @@
 import tkinter as tk
-from pyrustic.widget.table import Table
+from megawidget.table import Table
 
 
 def builder(page, cid):
-    cache = page.components[cid]
-    master = cache["master"]
-    padding = cache["padding"]
-    config = cache["config"]
-    frame = tk.Frame(master)
+    info = page.components[cid]
+    container = info["container"]
+    padding = info["padding"]
+    config = info["config"]
+    frame = tk.Frame(container)
     frame.pack(side=config["side"], anchor=config["anchor"],
                padx=padding[0], pady=padding[1])
     label = tk.Label(frame, text=config["title"])
@@ -22,12 +22,11 @@ def builder(page, cid):
                         on_click=on_click:
                             on_click(page, cid))
         table.handle_row_selected(cache)
-    parts = {"table": table, "label": label, "frame": frame}
-    return parts, data_getter
+    parts = {"table": table, "label": label}
+    return parts
 
 
-def data_getter(page, cid):
-    print("GET DATA, ", cid)
+def reader(page, cid):
     cache = page.components[cid]
     parts = cache["parts"]
     config = cache["config"]
@@ -36,3 +35,7 @@ def data_getter(page, cid):
     if selection:
         selection = selection[0]["data"]
     return selection
+
+
+def updater(page, cid, **config):  # TODO
+    pass

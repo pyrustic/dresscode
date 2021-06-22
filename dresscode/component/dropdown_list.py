@@ -2,16 +2,11 @@ import tkinter as tk
 
 
 def builder(page, cid):
-    cache = page.components[cid]
-    master = cache["master"]
-    padding = cache["padding"]
-    config = cache["config"]
-    # container
-    frame = tk.Frame(master)
-    frame.pack(side=config["side"], anchor=config["anchor"],
-               padx=padding[0], pady=padding[1])
+    info = page.components[cid]
+    container = info["container"]
+    config = info["config"]
     # title
-    label = tk.Label(frame, text=config["title"])
+    label = tk.Label(container, text=config["title"])
     label.pack(anchor="w")
     # command
     on_choice = config["on_choice"]
@@ -20,27 +15,36 @@ def builder(page, cid):
         command = lambda e, page=page, cid=cid: on_choice(page, cid)
     # optionmenu
     str_var = tk.StringVar()
-    option_menu = tk.OptionMenu(frame, str_var, *config["items"],
-                                command=command)
+    items = config["items"]
+    if items:
+        option_menu = tk.OptionMenu(container, str_var,
+                                    *items, command=command)
+    else:
+        option_menu = tk.OptionMenu(container, str_var,
+                                    None, command=command)
     option_menu.pack(side=tk.LEFT)
     # default
     default = config["default"]
     if default is None:
         str_var.set(config["prompt"])
     else:
-        str_var.set(config["items"][default])
-    parts = {"frame": frame, "label": label,
+        str_var.set(items[default])
+    parts = {"label": label,
              "option_menu": option_menu,
              "str_var": str_var}
-    return parts, data_getter
+    return parts
 
 
-def data_getter(page, cid):
-    cache = page.components[cid]
-    parts = cache["parts"]
-    config = cache["config"]
+def reader(page, cid):
+    info = page.components[cid]
+    parts = info["parts"]
+    config = info["config"]
     text = parts["str_var"].get()
     index = None
     if text in config["items"]:
         index = config["items"].index(text)
     return index, text
+
+
+def updater(page, cid, **config):  # TODO
+    pass

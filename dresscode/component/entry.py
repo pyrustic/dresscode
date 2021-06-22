@@ -2,39 +2,55 @@ import tkinter as tk
 
 
 def builder(page, cid):
-    cache = page.components[cid]
-    master = cache["master"]
-    padding = cache["padding"]
-    config = cache["config"]
-    frame = tk.Frame(master)
-    frame.pack(side=config["side"], anchor=config["anchor"],
-               padx=padding[0], pady=padding[1])
-    label = tk.Label(frame, text=config["title"])
+    info = page.components[cid]
+    container = info["container"]
+    config = info["config"]
+    label_strvar = tk.StringVar()
+    if config["title"]:
+        label_strvar.set(config["title"])
+    label = tk.Label(container,
+                     textvariable=label_strvar)
     label.pack(anchor="w")
     show = None
     if config["secretive"]:
         show = "*"
-    str_var = tk.StringVar()
-    entry = tk.Entry(frame, show=show,
-                     textvariable=str_var,
+    entry_strvar = tk.StringVar()
+    if config["text"]:
+        entry_strvar.set(config["text"])
+    entry = tk.Entry(container, show=show,
+                     textvariable=entry_strvar,
                      width=config["width"])
     entry.pack(anchor="w")
     on_submit = config["on_submit"]
-    if config["text"]:
-        str_var.set(config["text"])
     if on_submit:
         cache = (lambda e, page=page,
                         cid=cid,
                         on_submit=on_submit:
                             on_submit(page, cid))
         entry.bind("<Return>", cache)
-    parts = {"entry": entry, "str_var": str_var,
-             "label": label, "frame": frame}
-    return parts, data_getter
+    parts = {"label": label, "label_strvar": label_strvar,
+             "entry": entry, "entry_strvar": entry_strvar}
+    return parts
 
 
-def data_getter(page, cid):
+def reader(page, cid):
     cache = page.components[cid]
     parts = cache["parts"]
     config = cache["config"]
-    return parts["str_var"].get()
+    return parts["entry_strvar"].get()
+
+
+def updater(page, cid, **config):  # TODO
+    info = page.components[cid]
+    if "title" in config:
+        title = config["title"]
+        # update info
+        info["config"]["title"] = title
+        # update widget
+        info["parts"]["label_strvar"].set(title)
+    if "text" in config:
+        text = config["text"]
+        # update info
+        info["config"]["text"] = text
+        # update widget
+        info["parts"]["entry_strvar"].set(text)

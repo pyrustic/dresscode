@@ -46,10 +46,10 @@ def builder(page, cid):
     # parts
     parts = {"label": label, "frame": frame, "items_frame": items_frame,
              "int_var": int_var, "radiobuttons": radiobuttons}
-    return parts, data_getter
+    return parts
 
 
-def data_getter(page, cid):
+def reader(page, cid):
     cache = page.components[cid]
     parts = cache["parts"]
     config = cache["config"]
@@ -58,3 +58,7 @@ def data_getter(page, cid):
     if index is not None:
         text = config["items"][index]
     return index, text
+
+
+def updater(page, cid, **config):  # TODO
+    pass

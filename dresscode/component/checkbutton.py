@@ -2,26 +2,21 @@ import tkinter as tk
 
 
 def builder(page, cid):
-    cache = page.components[cid]
-    master = cache["master"]
-    padding = cache["padding"]
-    config = cache["config"]
-    # container
-    frame = tk.Frame(master)
-    frame.pack(side=config["side"], anchor=config["anchor"],
-               padx=padding[0], pady=padding[1])
+    info = page.components[cid]
+    container = info["container"]
+    config = info["config"]
     # title
-    label = tk.Label(frame, text=config["title"])
+    label = tk.Label(container, text=config["title"])
     label.pack(anchor="w")
     # items container
-    items_frame = tk.Frame(frame)
+    items_frame = tk.Frame(container)
     items_frame.pack(anchor="w")
-    int_vars = []
+    intvars = []
     checkbuttons = []
     # loop in items
     for item in config["items"]:
         int_var = tk.IntVar()
-        int_vars.append(int_var)
+        intvars.append(int_var)
         checkbutton = tk.Checkbutton(items_frame,
                                      variable=int_var,
                                      onvalue=1, offvalue=0,
@@ -43,23 +38,23 @@ def builder(page, cid):
     if default is None:
         pass
     elif type(default) is int:
-        int_vars[default].set(1)
+        intvars[default].set(1)
     else:
         for i in default:
-            int_vars[i].set(1)
+            intvars[i].set(1)
     # parts
-    parts = {"label": label, "frame": frame, "items_frame": items_frame,
-             "int_vars": int_vars, "checkbuttons": checkbuttons}
-    return parts, data_getter
+    parts = {"label": label, "items_frame": items_frame,
+             "intvars": intvars, "checkbuttons": checkbuttons}
+    return parts
 
 
-def data_getter(page, cid):
-    cache = page.components[cid]
-    parts = cache["parts"]
-    config = cache["config"]
-    int_vars = parts["int_vars"]
+def reader(page, cid):
+    info = page.components[cid]
+    parts = info["parts"]
+    config = info["config"]
+    intvars = parts["intvars"]
     selected_index = []
-    for i, int_var in enumerate(int_vars):
+    for i, int_var in enumerate(intvars):
         if int_var.get() == 1:
             selected_index.append(i)
     selected_text = []
@@ -67,3 +62,7 @@ def data_getter(page, cid):
     for index in selected_index:
         selected_text.append(items[index])
     return selected_index, selected_text
+
+
+def updater(page, cid, **config): # TODO
+    pass

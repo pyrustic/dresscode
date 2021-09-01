@@ -1,5 +1,5 @@
 
-Back to [Reference Overview](https://github.com/pyrustic/dresscode/blob/master/docs/reference/README.md)
+Back to [Reference Overview](https://github.com/pyrustic/dresscode/blob/master/docs/reference/README.md#readme)
 
 # dresscode.app
 
@@ -15,7 +15,7 @@ class App:
     This is the entry point of your Dresscode app
     """
 
-    def __init__(self, title=None, width=900, height=550, home=None, scrollbar='vertical', theme=<cyberpunk_theme.Cyberpunk object at 0x7fed2e561a60>, on_exit=None):
+    def __init__(self, title=None, width=900, height=550, home=None, scrollbar='vertical', theme=<cyberpunk_theme.Cyberpunk object at 0x7f4ad45a8c10>, on_exit=None):
         """
         Parameters
         ==========

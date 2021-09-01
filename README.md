@@ -15,8 +15,10 @@
 
 This project is part of the [Pyrustic Ecosystem](https://github.com/pyrustic/pyrustic#overview). Look powered by the [cyberpunk](https://github.com/pyrustic/tk-cyberpunk-theme#readme) theme.
 
+Beta version. Only for early-adopters !
+
 <!-- Quick Links -->
-[Showcase](#showcase) | [Installation](#installation) | [Usage](#usage) | [Tutorial](#tutorial) | [Reference](#reference)
+[Installation](#installation) | [Reference](https://github.com/pyrustic/dresscode/tree/master/docs/reference#readme)
 
 
 # Showcase
@@ -267,7 +269,7 @@ app.start()
 
 ## Components
 
-Do you think Dresscode only offers two components, the input field and the button ?
+Do you think `Dresscode` only offers two components, the input field and the button ?
 
 Normally that would be enough. But I implemented a multitude of components to allow everyone to build applications quickly, from the simplest to the most complex.
 
@@ -503,7 +505,7 @@ app.start()
 
 
 ### path entry
-The path entry is part of `pyrustic.widget`. Discover the [Pyrustic framework](https://github.com/pyrustic/pyrustic/#readme) !
+The path entry is part of [megawidget](https://github.com/pyrustic/megawidget) !
 
 <!-- Image -->
 <div align="center">
@@ -535,7 +537,7 @@ app.start()
 ```
 
 ### Table
-The table is part of `pyrustic.widget`. Discover the [Pyrustic framework](https://github.com/pyrustic/pyrustic/#readme) !
+The table is part of [megawidget](https://github.com/pyrustic/megawidget) !
 
 <!-- Image -->
 <div align="center">
@@ -610,6 +612,10 @@ app.start()
 Since we have this rebellious little side to wanting to customize everything, I implemented the possibility of adding custom components !
 
 ```python
+
+# WARNING: THIS SNIPPET IS DEPRECATED
+# WAIT FOR A STABLE VERSION
+
 from dresscode.app import App
 from dresscode.page import Page
 
@@ -644,9 +650,6 @@ app.start()
 
 There you go, so I won't be asked to add new components ! :)
 
-## Epilog
-
-I created a Discord for announcements and discussions etc. Join the [Discord](https://discord.gg/fSZ6nxzVd6) !
 
 
 Work in progress...

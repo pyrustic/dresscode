@@ -1,94 +1,74 @@
 
 # Reference Overview
 
-[dresscode.\_\_init\_\_](https://github.com/pyrustic/dresscode/blob/master/docs/reference/content/dresscode.\_\_init\_\_.md) 
+[dresscode.\_\_init\_\_](https://github.com/pyrustic/dresscode/blob/master/docs/reference/content/dresscode.\_\_init\_\_.md#dresscode\_\_init\_\_) 
 <br>
  
 
-[dresscode.\_\_main\_\_](https://github.com/pyrustic/dresscode/blob/master/docs/reference/content/dresscode.\_\_main\_\_.md) 
+[dresscode.\_\_main\_\_](https://github.com/pyrustic/dresscode/blob/master/docs/reference/content/dresscode.\_\_main\_\_.md#dresscode\_\_main\_\_) 
 <br>
  
 
-[dresscode.app](https://github.com/pyrustic/dresscode/blob/master/docs/reference/content/dresscode.app.md) 
+[dresscode.app](https://github.com/pyrustic/dresscode/blob/master/docs/reference/content/dresscode.app.md#dresscodeapp) 
 <br>
  
 
-[dresscode.component.\_\_init\_\_](https://github.com/pyrustic/dresscode/blob/master/docs/reference/content/dresscode.component.\_\_init\_\_.md) 
+[dresscode.component.\_\_init\_\_](https://github.com/pyrustic/dresscode/blob/master/docs/reference/content/dresscode.component.\_\_init\_\_.md#dresscodecomponent\_\_init\_\_) 
 <br>
  
 
-[dresscode.component.button](https://github.com/pyrustic/dresscode/blob/master/docs/reference/content/dresscode.component.button.md) 
+[dresscode.component.button](https://github.com/pyrustic/dresscode/blob/master/docs/reference/content/dresscode.component.button.md#dresscodecomponentbutton) 
 <br>
  
 
-[dresscode.component.checkbutton](https://github.com/pyrustic/dresscode/blob/master/docs/reference/content/dresscode.component.checkbutton.md) 
+[dresscode.component.checkbutton](https://github.com/pyrustic/dresscode/blob/master/docs/reference/content/dresscode.component.checkbutton.md#dresscodecomponentcheckbutton) 
 <br>
  
 
-[dresscode.component.dropdown\_list](https://github.com/pyrustic/dresscode/blob/master/docs/reference/content/dresscode.component.dropdown\_list.md) 
+[dresscode.component.dropdown\_list](https://github.com/pyrustic/dresscode/blob/master/docs/reference/content/dresscode.component.dropdown\_list.md#dresscodecomponentdropdown\_list) 
 <br>
  
 
-[dresscode.component.editor](https://github.com/pyrustic/dresscode/blob/master/docs/reference/content/dresscode.component.editor.md) 
+[dresscode.component.editor](https://github.com/pyrustic/dresscode/blob/master/docs/reference/content/dresscode.component.editor.md#dresscodecomponenteditor) 
 <br>
  
 
-[dresscode.component.entry](https://github.com/pyrustic/dresscode/blob/master/docs/reference/content/dresscode.component.entry.md) 
+[dresscode.component.entry](https://github.com/pyrustic/dresscode/blob/master/docs/reference/content/dresscode.component.entry.md#dresscodecomponententry) 
 <br>
  
 
-[dresscode.component.image](https://github.com/pyrustic/dresscode/blob/master/docs/reference/content/dresscode.component.image.md) 
+[dresscode.component.image](https://github.com/pyrustic/dresscode/blob/master/docs/reference/content/dresscode.component.image.md#dresscodecomponentimage) 
 <br>
  
 
-[dresscode.component.label](https://github.com/pyrustic/dresscode/blob/master/docs/reference/content/dresscode.component.label.md) 
+[dresscode.component.label](https://github.com/pyrustic/dresscode/blob/master/docs/reference/content/dresscode.component.label.md#dresscodecomponentlabel) 
 <br>
  
 
-[dresscode.component.path\_entry](https://github.com/pyrustic/dresscode/blob/master/docs/reference/content/dresscode.component.path\_entry.md) 
+[dresscode.component.path\_entry](https://github.com/pyrustic/dresscode/blob/master/docs/reference/content/dresscode.component.path\_entry.md#dresscodecomponentpath\_entry) 
 <br>
  
 
-[dresscode.component.radiobutton](https://github.com/pyrustic/dresscode/blob/master/docs/reference/content/dresscode.component.radiobutton.md) 
+[dresscode.component.radiobutton](https://github.com/pyrustic/dresscode/blob/master/docs/reference/content/dresscode.component.radiobutton.md#dresscodecomponentradiobutton) 
 <br>
  
 
-[dresscode.component.space](https://github.com/pyrustic/dresscode/blob/master/docs/reference/content/dresscode.component.space.md) 
+[dresscode.component.space](https://github.com/pyrustic/dresscode/blob/master/docs/reference/content/dresscode.component.space.md#dresscodecomponentspace) 
 <br>
  
 
-[dresscode.component.spinbox](https://github.com/pyrustic/dresscode/blob/master/docs/reference/content/dresscode.component.spinbox.md) 
+[dresscode.component.spinbox](https://github.com/pyrustic/dresscode/blob/master/docs/reference/content/dresscode.component.spinbox.md#dresscodecomponentspinbox) 
 <br>
  
 
-[dresscode.component.table](https://github.com/pyrustic/dresscode/blob/master/docs/reference/content/dresscode.component.table.md) 
+[dresscode.component.table](https://github.com/pyrustic/dresscode/blob/master/docs/reference/content/dresscode.component.table.md#dresscodecomponenttable) 
 <br>
  
 
-[dresscode.constant](https://github.com/pyrustic/dresscode/blob/master/docs/reference/content/dresscode.constant.md) 
+[dresscode.constant](https://github.com/pyrustic/dresscode/blob/master/docs/reference/content/dresscode.constant.md#dresscodeconstant) 
 <br>
  
 
-[dresscode.hooking.\_\_init\_\_](https://github.com/pyrustic/dresscode/blob/master/docs/reference/content/dresscode.hooking.\_\_init\_\_.md) 
-<br>
- 
-
-[dresscode.hooking.ante\_build\_hook](https://github.com/pyrustic/dresscode/blob/master/docs/reference/content/dresscode.hooking.ante\_build\_hook.md) 
-<br>
- 
-
-[dresscode.hooking.ante\_release\_hook](https://github.com/pyrustic/dresscode/blob/master/docs/reference/content/dresscode.hooking.ante\_release\_hook.md) 
-<br>
- 
-
-[dresscode.hooking.post\_build\_hook](https://github.com/pyrustic/dresscode/blob/master/docs/reference/content/dresscode.hooking.post\_build\_hook.md) 
-<br>
- 
-
-[dresscode.hooking.post\_release\_hook](https://github.com/pyrustic/dresscode/blob/master/docs/reference/content/dresscode.hooking.post\_release\_hook.md) 
-<br>
- 
-
-[dresscode.page](https://github.com/pyrustic/dresscode/blob/master/docs/reference/content/dresscode.page.md) 
+[dresscode.page](https://github.com/pyrustic/dresscode/blob/master/docs/reference/content/dresscode.page.md#dresscodepage) 
 <br>
  

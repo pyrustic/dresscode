@@ -1,5 +1,5 @@
 
-Back to [Reference Overview](https://github.com/pyrustic/dresscode/blob/master/docs/reference/README.md)
+Back to [Reference Overview](https://github.com/pyrustic/dresscode/blob/master/docs/reference/README.md#readme)
 
 # dresscode.page
 
@@ -9,11 +9,11 @@ Back to [Reference Overview](https://github.com/pyrustic/dresscode/blob/master/d
 
 
 ```python
-COMPONENT_BUILDER = {'space': <function builder at 0x7fed2eb63940>, 'label': <function builder at 0x7fed2eb59940>, 'entry': <function builder at 0x7fed2eb593a0>, 'button': <function builder at 0x7fed2eb52820>, 'editor': <function builder at 0x7fed2eb590d0>, 'checkbutton': <function builder at 0x7fed2eb52af0>, 'radiobutton': <function builder at 0x7fed2eb63670>, 'spinbox': <function builder at 0x7fed2eb63ca0>, 'dropdown_list': <function builder at 0x7fed2eb52e50>, 'path_entry': <function builder at 0x7fed2eb59c10>, 'image': <function builder at 0x7fed2eb59700>, 'table': <function builder at 0x7fed2eb63f70>}
+COMPONENT_BUILDER = {'space': <function builder at 0x7f4ad45220d0>, 'label': <function builder at 0x7f4ad451a0d0>, 'entry': <function builder at 0x7f4ad4513af0>, 'button': <function builder at 0x7f4ad4513040>, 'editor': <function builder at 0x7f4ad4513820>, 'checkbutton': <function builder at 0x7f4ad4513310>, 'radiobutton': <function builder at 0x7f4ad451adc0>, 'spinbox': <function builder at 0x7f4ad4522430>, 'dropdown_list': <function builder at 0x7f4ad45135e0>, 'path_entry': <function builder at 0x7f4ad451a3a0>, 'image': <function builder at 0x7f4ad4513e50>, 'table': <function builder at 0x7f4ad4522700>}
 
-COMPONENT_READER = {'space': <function reader at 0x7fed2eb63af0>, 'label': <function reader at 0x7fed2eb59a60>, 'entry': <function reader at 0x7fed2eb59550>, 'button': <function reader at 0x7fed2eb52940>, 'editor': <function reader at 0x7fed2eb591f0>, 'checkbutton': <function reader at 0x7fed2eb52ca0>, 'radiobutton': <function reader at 0x7fed2eb63790>, 'spinbox': <function reader at 0x7fed2eb63dc0>, 'dropdown_list': <function reader at 0x7fed2eb52ee0>, 'path_entry': <function reader at 0x7fed2eb59dc0>, 'image': <function reader at 0x7fed2eb59790>, 'table': <function reader at 0x7fed2eb763a0>}
+COMPONENT_READER = {'space': <function reader at 0x7f4ad4522280>, 'label': <function reader at 0x7f4ad451a1f0>, 'entry': <function reader at 0x7f4ad4513ca0>, 'button': <function reader at 0x7f4ad4513160>, 'editor': <function reader at 0x7f4ad4513940>, 'checkbutton': <function reader at 0x7f4ad4513430>, 'radiobutton': <function reader at 0x7f4ad451aee0>, 'spinbox': <function reader at 0x7f4ad4522550>, 'dropdown_list': <function reader at 0x7f4ad4513670>, 'path_entry': <function reader at 0x7f4ad451a550>, 'image': <function reader at 0x7f4ad4513ee0>, 'table': <function reader at 0x7f4ad4524b80>}
 
-COMPONENT_UPDATER = {'space': <function updater at 0x7fed2eb63b80>, 'label': <function updater at 0x7fed2eb59af0>, 'entry': <function updater at 0x7fed2eb595e0>, 'button': <function updater at 0x7fed2eb529d0>, 'editor': <function updater at 0x7fed2eb59280>, 'checkbutton': <function updater at 0x7fed2eb52d30>, 'radiobutton': <function updater at 0x7fed2eb63820>, 'spinbox': <function updater at 0x7fed2eb63e50>, 'dropdown_list': <function updater at 0x7fed2eb52f70>, 'path_entry': <function updater at 0x7fed2eb63550>, 'image': <function updater at 0x7fed2eb59820>, 'table': <function updater at 0x7fed2eb76550>}
+COMPONENT_UPDATER = {'space': <function updater at 0x7f4ad4522310>, 'label': <function updater at 0x7f4ad451a280>, 'entry': <function updater at 0x7f4ad4513d30>, 'button': <function updater at 0x7f4ad45131f0>, 'editor': <function updater at 0x7f4ad45139d0>, 'checkbutton': <function updater at 0x7f4ad45134c0>, 'radiobutton': <function updater at 0x7f4ad451af70>, 'spinbox': <function updater at 0x7f4ad45225e0>, 'dropdown_list': <function updater at 0x7f4ad4513700>, 'path_entry': <function updater at 0x7f4ad451aca0>, 'image': <function updater at 0x7f4ad4513f70>, 'table': <function updater at 0x7f4ad4524d30>}
 
 ```
 

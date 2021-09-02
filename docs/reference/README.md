@@ -1,14 +1,6 @@
 
 # Reference Overview
 
-[dresscode.\_\_init\_\_](https://github.com/pyrustic/dresscode/blob/master/docs/reference/content/dresscode.\_\_init\_\_.md#dresscode\_\_init\_\_) 
-<br>
- 
-
-[dresscode.\_\_main\_\_](https://github.com/pyrustic/dresscode/blob/master/docs/reference/content/dresscode.\_\_main\_\_.md#dresscode\_\_main\_\_) 
-<br>
- 
-
 [dresscode.app](https://github.com/pyrustic/dresscode/blob/master/docs/reference/content/dresscode.app.md#dresscodeapp) 
 <br>
  
@@ -62,10 +54,6 @@
  
 
 [dresscode.component.table](https://github.com/pyrustic/dresscode/blob/master/docs/reference/content/dresscode.component.table.md#dresscodecomponenttable) 
-<br>
- 
-
-[dresscode.constant](https://github.com/pyrustic/dresscode/blob/master/docs/reference/content/dresscode.constant.md#dresscodeconstant) 
 <br>
  
 

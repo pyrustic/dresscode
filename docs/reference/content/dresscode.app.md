@@ -15,7 +15,7 @@ class App:
     This is the entry point of your Dresscode app
     """
 
-    def __init__(self, title=None, width=900, height=550, home=None, scrollbar='vertical', theme=<cyberpunk_theme.Cyberpunk object at 0x7f4ad45a8c10>, on_exit=None):
+    def __init__(self, title=None, width=900, height=550, home=None, scrollbar='vertical', theme=<cyberpunk_theme.Cyberpunk object at 0x7f5900c38700>, on_exit=None):
         """
         Parameters
         ==========

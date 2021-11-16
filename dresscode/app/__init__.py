@@ -2,43 +2,45 @@ import tkinter as tk
 from viewable import Viewable
 from pyrustic.app import App as PyrusticApp
 from cyberpunk_theme import Cyberpunk
-from megawidget.scrollbox import Scrollbox
+from megawidget import ScrollBox
+from dresscode import error
 
 
 class App:
     """This is the entry point of your Dresscode app"""
-    def __init__(self, title=None, width=900, height=550,
-                 home=None, scrollbar="vertical",
-                 theme=Cyberpunk(), on_exit=None):
+    def __init__(self, title="Dresscode App", width=800, height=500,
+                 theme=Cyberpunk(), caching=False,
+                 resizable=(False, True), on_exit=None):
         """
         Parameters
         ==========
         - title: string, the title of the app
         - width: int, the width of the app
         - height: int, the height of the app
-        - home: string, the page id of the home page
-        - scrollbar: the orient of the scrollbar, "vertical", "horizontal", "both".
-        - theme: the theme, ie an instance of themebase.Theme
+        - scrolling: the orient of the scrollbar, "vertical", "horizontal", "both".
+        - theme: the theme, i.e. an instance of tkstyle.Theme
         - on_exit: the on_exit handler, ie a function that will be called on exit.
         """
         self._title = title
         self._width = width
         self._height = height
-        self._home = home
-        self._scrollbar = scrollbar
         self._theme = theme
+        self._caching = caching
+        self._resizable = resizable
         self._on_exit = on_exit
         self._pages = {}
-        self._opened_page = None
-        self._caching = False
-        self._cache = {}
+        self._page = None
+        self._todo_open_cache = []
+        self._todo_menu_cache = []
         self._menubar = None
-        self._main_view = None
+        self._view = None
         self._menu_map = {}
         self._pids = []
         self._pids_count = 0
         self._pyrustic_app = PyrusticApp()
         self._root = self._pyrustic_app.root
+        self._opening = False
+        self._started = False
         self._setup()
 
     @property
@@ -49,6 +51,8 @@ class App:
     @title.setter
     def title(self, val):
         """Set the title of the app"""
+        if self._started and self._title:
+            raise error.AlreadyDefinedError
         self._title = val
 
     @property
@@ -59,6 +63,8 @@ class App:
     @width.setter
     def width(self, val):
         """Set the width of the app"""
+        if self._started and self._width:
+            raise error.AlreadyDefinedError
         self._width = val
 
     @property
@@ -69,32 +75,9 @@ class App:
     @height.setter
     def height(self, val):
         """Set the height of the app"""
+        if self._started and self._height:
+            raise error.AlreadyDefinedError
         self._height = val
-
-    @property
-    def home(self):
-        """Return the PID of the home page"""
-        return self._home
-
-    @home.setter
-    def home(self, val):
-        """Set the PID of the home page"""
-        self._home = val
-
-    @property
-    def scrollbar(self):
-        """Return the scrollbar orient"""
-        return self._scrollbar
-
-    @scrollbar.setter
-    def scrollbar(self, val):
-        """
-        Set the scrollbar orient. One of:
-        - horizontal
-        - vertical
-        - both
-        """
-        self._scrollbar = val
 
     @property
     def theme(self):
@@ -104,44 +87,9 @@ class App:
     @theme.setter
     def theme(self, val):
         """Set a theme, ie, a themebase.Theme instance"""
+        if self._started and self._theme:
+            raise error.AlreadyDefinedError
         self._theme = val
-
-    @property
-    def on_exit(self):
-        """Return the on_exit handler"""
-        return self._on_exit
-
-    @on_exit.setter
-    def on_exit(self, val):
-        """Set the on_exit handler. The handler is a function that accepts no argument"""
-        self._on_exit = val
-
-    @property
-    def opened_page(self):
-        """Return the currently opened page"""
-        return self._opened_page
-
-    @property
-    def pages(self):
-        """Return an internal dictionary that contains pages. Keys are pages ids"""
-        return self._pages
-
-    @property
-    def pyrustic_app(self):
-        """Under the hood, Dresscode uses Pyrustic Framework.
-        This property returns the instance of pyrustic.app.App"""
-        return self._pyrustic_app
-
-    @property
-    def main_view(self):
-        """Under the hood, Dresscode uses Pyrustic Framework.
-        This property returns the main view."""
-        return self._main_view
-
-    @property
-    def root(self):
-        """Return the root Tk object"""
-        return self._root
 
     @property
     def caching(self):
@@ -153,54 +101,123 @@ class App:
     def caching(self, val):
         """Set True if you want pages to be cached. Cached pages retains their data.
         By default, caching is set to False."""
+        if self._started and self._caching:
+            raise error.AlreadyDefinedError
         self._caching = val
 
-    def add_page(self, page, category=None, indexable=True):
+    @property
+    def resizable(self):
+        """Return the resizable tuple state"""
+        return self._pyrustic_app.resizable
+
+    @resizable.setter
+    def resizable(self, val):
+        if self._started:
+            raise error.AlreadyDefinedError
+        self._pyrustic_app.resizable = val
+
+    @property
+    def on_exit(self):
+        """Return the on_exit handler"""
+        return self._on_exit
+
+    @on_exit.setter
+    def on_exit(self, val):
+        """Set the on_exit handler. The handler is a function that accepts no argument"""
+        if self._started and self._on_exit:
+            raise error.AlreadyDefinedError
+        self._on_exit = val
+
+    @property
+    def page(self):
+        """Return the currently opened page"""
+        return self._page
+
+    @property
+    def pages(self):
+        """Return an internal dictionary that contains pages. Keys are pages ids"""
+        return self._pages.copy()
+
+    @property
+    def pyrustic_app(self):
+        """Under the hood, Dresscode uses Pyrustic Framework.
+        This property returns the instance of pyrustic.app.App"""
+        return self._pyrustic_app
+
+    @property
+    def root(self):
+        """Return the root Tk object"""
+        return self._root
+
+    @property
+    def view(self):
+        """Under the hood, Dresscode uses Pyrustic Framework.
+        This property returns the main view."""
+        return self._view
+
+    def add(self, page, indexable=True, category=None):
         """ Add a page to the app.
         Parameters
         ==========
             - page: an instance of dresscode.page.Page
+            - indexable: boolean, if False, the page won't be indexed in the menubar
             - category: string, the menu category name under
              which the page is indexed
-            - indexable: boolean, if False, the page won't be indexed in the menubar
+
+        Returns the pid
+
+        Raises dresscode.error.DuplicatePageError if the pid already exists
         """
+        if not page.app:
+            page.app = self
+        if not page.pid:
+            page.pid = self.new_pid()
         pid = page.pid
-        if not pid:
-            pid = self._gen_pid()
-            page.pid = pid
         if pid in self._pages:
-            message = "Duplicate page id isn't allowed ({})".format(pid)
-            raise Error(message)
+            raise error.DuplicatePageError
         self._pages[pid] = page
         self._pids.append(pid)
         if indexable:
-            self._main_view.populate_menubar(pid, page, category)
-        page.app = self
-
-    def open_page(self, pid):
-        """ Open a page specified by its pid"""
-        if pid not in self._pages:
-            message = "You cannot open a page that you haven't added yet"
-            raise Error(message)
-        if self._opened_page:
-            if self._caching:
-                self._opened_page.remove_page_view()
+            if self._view.body:
+                self._view.populate_menubar(pid, page, category)
             else:
-                self._opened_page.destroy_page_view()
-        page = self._pages[pid]
-        self._opened_page = page
-        scrollbox = self._main_view.body
-        #scrollbox.clear()
-        page.install_page_view(scrollbox.box)
+                data = (pid, page, category)
+                self._todo_menu_cache.append(data)
+        return pid
 
-    def open_home(self):
-        """ Open the home page if it's available """
-        if self._home:
-            self.open_page(self._home)
+    def new_pid(self):
+        self._pids_count += 1
+        return "pid-{}".format(self._pids_count)
+
+    def open(self, pid):
+        """ Open a page specified by its pid
+        Raise dresscode.error.PageNotFoundError if not page is associated to this PID
+        Raise dresscode.error.NestedOpeningError if you try to open a new page inside
+        on_open and on_close callbacks
+        """
+        if self._opening:
+            msg = "Don't open a new page inside on_open and on_close callbacks"
+            raise error.NestedOpeningError(msg)
+        if not self._view.body:
+            self._todo_open_cache.append(pid)
+            return
+        if pid not in self._pages:
+            raise error.PageNotFoundError
+        self._opening = True
+        if self._page:
+            self._page.close()
+        self._page = self._pages[pid]
+        self._page.open()
+        self._opening = False
 
     def start(self):
         """ Start the app. Mainloop here."""
+        self._started = True
         self._pyrustic_app.start()
+
+    def exit(self):
+        """Exit the app"""
+        self._pyrustic_app.exit()
 
     def _setup(self):
         # set theme
@@ -211,27 +228,32 @@ class App:
         # set width and height
         if self._width and self._height:
             cache = "{}x{}+0+0".format(self._width, self._height)
-            self._pyrustic_app.root.geometry(cache)
+            self._root.geometry(cache)
+        # set resizable
+        self.resizable = self._resizable
         # center the app
         self._pyrustic_app.center()
-        # set exit handler
-        if self._on_exit:
-            self._pyrustic_app.exit_handler = self._on_exit
         # set the main view
-        self._main_view = _MainView(self, self._scrollbar)
-        self._pyrustic_app.view = self._main_view
+        self._view = View(self, self._todo, self._on_exit)
+        self._pyrustic_app.view = self._view
 
-    def _gen_pid(self):
-        self._pids_count += 1
-        return "pid_{}".format(self._pids_count)
+    def _todo(self):
+        for pid, page, category in self._todo_menu_cache:
+            self._view.populate_menubar(pid, page, category)
+        for pid in self._todo_open_cache:
+            self.open(pid)
+        self._todo_menu_cache = []
+        self._todo_open_cache = []
 
 
-class _MainView(Viewable):
+class View(Viewable):
 
-    def __init__(self, app, scrollbar):
+    def __init__(self, app, todo_on_map, on_exit):
         super().__init__()
         self._app = app
-        self._scrollbar = scrollbar
+        self._todo_on_map = todo_on_map
+        self._on_exit = on_exit
+        self._on_exit = on_exit
         self._root = app.root
         self._body = None
         self._menubar = None
@@ -239,28 +261,18 @@ class _MainView(Viewable):
         self._menu_map = {}
 
     def _build(self):
-        self._body = Scrollbox(self._root,
-                               orient=self._scrollbar)
+        self._body = tk.Frame(self._root)
         # set menubar
         self._menubar = tk.Menu(self._root)
         self._root.config(menu=self._menubar)
 
     def _on_map(self):
-        # consume menu cache
-        for pid, page, category in self._menu_cache:
-            self.populate_menubar(pid, page, category)
-        if not self._app.opened_page:
-            self._app.open_home()
+        self._todo_on_map()
 
     def populate_menubar(self, pid, page, category):
-        if not self._body:
-            data = (pid, page, category)
-            self._menu_cache.append(data)
-            return
         page_name = page.name
-        menu = None
         command = (lambda self=self, pid=pid:
-                   self._app.open_page(pid))
+                   self._app.open(pid))
         if category:
             if category in self._menu_map:
                 menu = self._menu_map[category]
@@ -279,12 +291,6 @@ class _MainView(Viewable):
             menu.add_command(label=page_name,
                              command=command)
 
-
-class Error(Exception):
-    def __init__(self, *args, **kwargs):
-        self.code = 0
-        self.message = args[0] if args else ""
-        super().__init__(self.message)
-
-    def __str__(self):
-        return self.message
+    def _on_destroy(self):
+        if self._on_exit:
+            self._on_exit()

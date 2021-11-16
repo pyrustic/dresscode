@@ -154,7 +154,7 @@ class Page:
 
     def add_custom(self, cid=None, new_row=False, backend=None, **config):
         """
-        backend: a dict with keys: name, builder, reader, updater
+        component: a dict with keys: name, builder, reader, updater
                 
         """
 
